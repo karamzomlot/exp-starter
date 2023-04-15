@@ -1,0 +1,20 @@
+{
+  "name": "exp-starter",
+  "version": "2.0.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "create-express-app": "./bin/create-express-app.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "shelljs": "^0.8.5",
+    "yargs": "^17.7.1"
+  }
+}
