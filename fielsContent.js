@@ -57,7 +57,7 @@ export const routerIndexFile =
 
 const router = require('express').Router();
 
-router.get('/', (req, res) => homeController);
+router.get('/', homeController);
 
 module.exports = router;
 `;
