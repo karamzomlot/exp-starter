@@ -1,6 +1,6 @@
 {
   "name": "exp-starter",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -13,8 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.2.0",
-    "shelljs": "^0.8.5",
-    "yargs": "^17.7.1"
+    "chalk": "^5.2.0"
   }
 }
