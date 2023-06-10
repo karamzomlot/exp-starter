@@ -5,7 +5,11 @@ import chalk from 'chalk';
 import generateExpressStructure from '../index.js';
 
 const args = process.argv.slice(2);
-const directoryName = args[0] || 'my-express-app';
+let directoryName = args[0] || 'my-express-app';
+
+if(directoryName === '.') {
+  directoryName = process.cwd();
+}
 
 generateExpressStructure(directoryName);
 

@@ -1,9 +1,14 @@
 import { mkdirSync, writeFileSync } from 'fs';
-import { appFile, controllerIndexFile, homeControllerFile, indexFile, routerIndexFile } from './fielsContent.js';
+import {
+  appFile,
+  controllerIndexFile,
+  homeControllerFile,
+  indexFile,
+  routerIndexFile,
+} from './fielsContent.js';
 
 function generateExpressStructure(dirName) {
-  // Create the main server directory
-  mkdirSync(dirName);
+  if (dirName !== process.cwd()) mkdirSync(dirName);
 
   mkdirSync(`${dirName}/server`);
   mkdirSync(`${dirName}/public`);
@@ -22,7 +27,10 @@ function generateExpressStructure(dirName) {
   // Create the other necessary files for the express app
   writeFileSync(`${dirName}/server/index.js`, indexFile);
   writeFileSync(`${dirName}/server/app.js`, appFile);
-  writeFileSync(`${dirName}/server/controller/homeController.js`, homeControllerFile);
+  writeFileSync(
+    `${dirName}/server/controller/homeController.js`,
+    homeControllerFile
+  );
   writeFileSync(`${dirName}/server/controller/index.js`, controllerIndexFile);
   writeFileSync(`${dirName}/server/database/index.js`, '');
   writeFileSync(`${dirName}/server/database/config/index.js`, '');
@@ -35,16 +43,26 @@ function generateExpressStructure(dirName) {
   writeFileSync(`${dirName}/.gitignore`, 'node_modules/\n.env');
   writeFileSync(`${dirName}/.env`, 'PORT=8080');
   writeFileSync(`${dirName}/example.env`, '');
-  writeFileSync(`${dirName}/package.json`, JSON.stringify({
-    name: dirName,
-    version: '1.0.0',
-    description: '',
-    main: 'index.js',
-    scripts: {
-      dev: 'cross-env NODE_ENV=development nodemon server/index.js',
-      start: 'cross-env NODE_ENV=production node server/index.js'
-    }
-  }, null, 2));
+
+  const name = dirName.split('/').pop();
+
+  writeFileSync(
+    `${dirName}/package.json`,
+    JSON.stringify(
+      {
+        name: name,
+        version: '1.0.0',
+        description: '',
+        main: 'index.js',
+        scripts: {
+          dev: 'cross-env NODE_ENV=development nodemon server/index.js',
+          start: 'cross-env NODE_ENV=production node server/index.js',
+        },
+      },
+      null,
+      2
+    )
+  );
 }
 
 export default generateExpressStructure;
